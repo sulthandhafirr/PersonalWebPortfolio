@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Home } from "./pages/home";
-import { About } from "./pages/about";
-import { Contact } from "./pages/contact";
+import { Home } from "./pages/Home";
+import { About } from "./pages/About";
+import { Contact } from "./pages/Contact";
 import { Projects } from "./pages/Projects";
 import { Certificates } from "./pages/Certificates";
-import { NotFound } from "./pages/notfound";
+import { NotFound } from "./pages/NotFound";
 import { Preloader } from "./components/Preloader";
 import { Navbar } from "./components/Navbar";
 import { Experience } from "./pages/Experience";
