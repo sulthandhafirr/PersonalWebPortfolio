@@ -1,11 +1,11 @@
 @font-face {
   font-family: Bitcount Prop Single;
-  src: url('.\assets\BitcountPropSingle-Regular.ttf');
+  src: url(.\assets\BitcountPropSingle-Regular.ttf);
 }
 
 @font-face {
   font-family: Playwrite Polska;
-  src: url('.\assets\PlaywritePL-Regular.ttf');
+  src: url(.\assets\PlaywritePL-Regular.ttf);
 }
 
 @font-face {
