@@ -1,0 +1,35 @@
+export const aboutData = {
+  description: "Passionate about AI/ML, Computer Vision, Data Science, Data Analyst, and Web Development, I'm an Informatics student at President University. I love learning and experimenting with technologies to build real world solutions. This portfolio showcases my growth, passion, and work both for job opportunities and personal branding. I believe technology has the power to solve real-world problems and improve lives. Outside of tech, I'm involved in student organizations as a division leader and often volunteer in campus events. I'm open to new collaborations, challenges, and opportunities that help me grow both professionally and personally.",
+
+  skills: [
+    "python.svg",
+    "docker.svg",
+    "html.svg",
+    "css.svg",
+    "react.svg",
+    "javascript.svg",
+    "vite.svg",
+    "tailwind.svg",
+    "framer.svg",
+    "nodejs.svg",
+    "flutter.svg",
+    "java.svg",
+    "kotlin.svg",
+    "excel.svg",
+    "powerbi.svg",
+    "git.svg",
+    "github.svg",
+    "vercel.svg",
+    "streamlit.svg",
+    "huggingface.svg",
+  ],
+
+  interests: [
+    "Computer Vision",
+    "Data Science",
+    "Data Analyst",
+    "AI & ML",
+    "Data Visualization",
+    "Web Development",
+  ],
+};
