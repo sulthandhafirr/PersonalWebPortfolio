@@ -29,7 +29,7 @@ export const About = () => {
     },
     {
       label: "Gmail",
-      href: "mailto:sulthandr@gmail.com",
+      href: "mailto:sulthandrwrk@gmail.com",
       icon: <Mail className="w-6 h-6 mb-2 text-primary" />,
     },
     {
