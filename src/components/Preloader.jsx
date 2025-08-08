@@ -30,7 +30,7 @@ export const Preloader = ({ onFinish }) => {
     >
       {!hideText && (
         <>
-          <h1 className={`font-bitcount text-white text-5xl sm:text-8xl tracking-widest transition-opacity duration-700 ${textFadeOut? "opacity-0": textGlowIn? "opacity-100": "opacity-0"}`}>Hello World!</h1>
+          <h1 className={`font-code text-white text-5xl sm:text-8xl tracking-widest transition-opacity duration-700 ${textFadeOut? "opacity-0": textGlowIn? "opacity-100": "opacity-0"}`}>Hello World!</h1>
           <p className={`absolute bottom-6 text-gray-400 text-sm sm:text-base transition-opacity duration-700 ${textFadeOut? "opacity-0": textGlowIn? "opacity-80": "opacity-0"}`}>Designed and coded by Sulthan DR © 2025</p>
         </>
       )}

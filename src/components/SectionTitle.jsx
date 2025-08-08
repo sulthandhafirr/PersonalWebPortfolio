@@ -40,7 +40,7 @@ export default function SectionTitle() {
     >
       <div className="w-full max-w-screen-xl">
         <motion.h1
-          className="font-playwrite font-bold leading-tight text-3xl sm:text-5xl md:text-6xl lg:text-7xl break-words"
+          className="font-code font-bold leading-tight text-3xl sm:text-5xl md:text-6xl lg:text-7xl break-words"
           variants={containerVariants}
           initial="hidden"
           animate="show"
