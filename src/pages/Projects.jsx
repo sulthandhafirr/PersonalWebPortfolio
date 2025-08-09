@@ -49,7 +49,7 @@ export const Projects = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2 mb-12 font-code">
+      <div className="flex flex-wrap gap-2 mb-12 font-code text-foreground">
         {allCategories.map((category) => (
           <button
             key={category}
