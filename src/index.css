@@ -146,25 +146,6 @@
   text-align: center;
 }
 
-@keyframes scroll-loop {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-scroll-loop {
-  animation: scroll-loop 50s linear infinite;
-  will-change: transform;
-}
-
-.animate-scroll-loop:hover {
-  animation-play-state: paused;
-}
-
-
 
 
 

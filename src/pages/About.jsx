@@ -1,6 +1,63 @@
 import { motion } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { aboutData } from "../hooks/about";
 import { Download, Mail, Github, Linkedin, Phone } from "lucide-react";
+
+const ScrollSkills = ({ skills }) => {
+  const wrapperRef = useRef(null);
+  const contentRef = useRef(null);
+  const [maxTranslateX, setMaxTranslateX] = useState(0);
+
+  useEffect(() => {
+    if (!wrapperRef.current || !contentRef.current) return;
+
+    const wrapperWidth = wrapperRef.current.offsetWidth;
+    const contentWidth = contentRef.current.scrollWidth;
+
+    const maxTranslate = contentWidth - wrapperWidth;
+    setMaxTranslateX(maxTranslate > 0 ? maxTranslate : 0);
+  }, [skills]);
+
+  return (
+    <div
+      ref={wrapperRef}
+      className="relative overflow-hidden w-full"
+      style={{ width: "100%" }}
+    >
+      <motion.div
+        ref={contentRef}
+        className="flex gap-6"
+        animate={maxTranslateX > 0 ? { x: [0, -maxTranslateX, 0] } : { x: 0 }}
+        transition={{
+          duration: 100,
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+        style={{ x: 0 }}
+      >
+        {[...skills, ...skills].map((icon, index) => {
+          const name = icon.replace(".svg", "");
+          return (
+            <div
+              key={index}
+              className="group relative flex flex-col items-center min-w-[60px]"
+            >
+              <img
+                src={`/about/${icon}`}
+                alt={name}
+                className="h-15 w-15 object-contain grayscale group-hover:grayscale-0 transition"
+              />
+              <span className="absolute bottom-[-1.8rem] opacity-0 group-hover:opacity-100 text-xs bg-muted text-foreground px-2 py-1 rounded shadow transition duration-300">
+                {name}
+              </span>
+            </div>
+          );
+        })}
+      </motion.div>
+    </div>
+  );
+};
 
 export const About = () => {
   const { description, skills, interests } = aboutData;
@@ -54,7 +111,7 @@ export const About = () => {
       initial="initial"
       animate="animate"
       variants={containerVariants}
-      className="bg-background text-foreground py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8 transition-colors duration-300"
+      className="bg-background text-foreground py-10 px-4 sm:px-6 pb-20 lg:px-8 max-w-7xl mx-auto space-y-8 transition-colors duration-300"
     >
       {/* Profile & Description */}
       <motion.div
@@ -81,7 +138,9 @@ export const About = () => {
           className="font-code bg-card rounded-2xl shadow-md p-4 sm:p-6 md:p-10 text-center md:text-left md:col-span-3 transition-colors duration-300 h-full"
           variants={itemVariants}
         >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-foreground transition-colors duration-300">Hi, I'm Rafief 👋</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-foreground transition-colors duration-300">
+            Hi, I'm Rafief 👋
+          </h2>
           <p className="text-foreground leading-relaxed text-sm sm:text-base transition-colors duration-300">
             {description}
           </p>
@@ -100,26 +159,7 @@ export const About = () => {
         >
           <h3 className="text-lg sm:text-xl font-semibold mb-4">Skills and Tools</h3>
           <div className="relative overflow-hidden w-full">
-            <div className="flex gap-6 animate-scroll-loop w-max">
-              {[...skills, ...skills].map((icon, index) => {
-                const name = icon.replace(".svg", "");
-                return (
-                  <div
-                    key={index}
-                    className="group relative flex flex-col items-center min-w-[60px]"
-                  >
-                    <img
-                      src={`/about/${icon}`}
-                      alt={name}
-                      className="h-15 w-15 object-contain grayscale group-hover:grayscale-0 transition"
-                    />
-                    <span className="absolute bottom-[-1.8rem] opacity-0 group-hover:opacity-100 text-xs bg-muted text-foreground px-2 py-1 rounded shadow transition duration-300">
-                      {name}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+            <ScrollSkills skills={skills} />
           </div>
         </motion.div>
 
@@ -140,7 +180,6 @@ export const About = () => {
             ))}
           </div>
         </motion.div>
-
       </motion.div>
 
       {/* Social Cards */}
@@ -149,8 +188,7 @@ export const About = () => {
           {socialCards.map(({ label, href, icon, download }, index) => (
             <motion.div
               key={index}
-              className={`
-                bg-card rounded-xl shadow-md p-4 hover:shadow-xl transition-all duration-300 hover:scale-[1.03] cursor-pointer text-center
+              className={`bg-card rounded-xl shadow-md p-4 hover:shadow-xl transition-all duration-300 hover:scale-[1.03] cursor-pointer text-center
                 ${label === "Download CV" ? "col-span-2 sm:col-span-2 md:col-span-1" : ""}
               `}
               variants={itemVariants}
@@ -169,8 +207,6 @@ export const About = () => {
           ))}
         </div>
       </motion.div>
-
-
     </motion.section>
   );
 };

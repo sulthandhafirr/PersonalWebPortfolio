@@ -11,6 +11,7 @@ import { Preloader } from "./components/Preloader";
 import { Navbar } from "./components/Navbar";
 import { Experience } from "./pages/Experience";
 import { Maintenance } from "./pages/Maintenance";
+import { ScrollTop } from "./components/ScrollTop";
 
 function App() {
   const [showPreloader, setShowPreloader] = useState(true);
@@ -25,6 +26,7 @@ function App() {
         <Preloader onFinish={handlePreloaderFinish} />
       ) : (
         <BrowserRouter>
+          <ScrollTop />
           <Navbar />
           <Routes>
             <Route index element={<Home />} />
@@ -35,6 +37,7 @@ function App() {
             <Route path="/certificates" element={<Certificates />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          
         </BrowserRouter>
       )}
     </>
