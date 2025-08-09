@@ -1,16 +1,16 @@
 @font-face {
-  font-family: Bitcount Prop Single;
-  src: url('.\assets\BitcountPropSingle-Regular.ttf');
+  font-family: "Bitcount Prop Single";
+  src: url("/assets/BitcountPropSingle-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: Playwrite Polska;
-  src: url(.\assets\PlaywritePL-Regular.ttf);
+  font-family: "Playwrite Polska";
+  src: url("/assets/PlaywritePL-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: Google Sans Code;
-  src: url(.\assets\GoogleSansCode-Regular.ttf);
+  font-family: "Google Sans Code";
+  src: url("/assets/GoogleSansCode-Regular.ttf") format("truetype");
 }
 
 @import "tailwindcss";
