@@ -29,7 +29,7 @@ export const Projects = () => {
     >
       <div className="flex flex-wrap justify-between items-center gap-4 mb-10 font-code">
         <h1 className="text-3xl md:text-5xl font-bold">Projects</h1>
-        <div className="flex items-center gap-2  transition-colors duration-300">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => setViewMode("list")}
             className={`p-2 rounded-full hover:bg-muted hover:scale-105 cursor-pointer ${
