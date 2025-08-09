@@ -56,7 +56,7 @@ export const Contact = () => {
       animate="visible"
       exit="hidden"
       variants={containerVariants}
-      className="w-full min-h-screen flex flex-col items-center px-6 py-15 bg-muted/40 dark:bg-background transition-colors duration-300"
+      className="w-full min-h-screen flex flex-col items-center px-6 py-15 pb-20 bg-muted/40 dark:bg-background transition-colors duration-300"
     >
       <motion.h1
         initial={{ opacity: 0, y: 20 }}

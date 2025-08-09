@@ -17,7 +17,7 @@ export const Certificates = () => {
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="w-full px-6 sm:px-10 md:px-20 lg:px-32 py-15 bg-background text-foreground transition-colors duration-300 ease-in-out"
+      className="w-full px-6 sm:px-10 md:px-20 lg:px-32 py-15 pb-20 bg-background text-foreground transition-colors duration-300 ease-in-out"
     >
       <div className="flex flex-wrap justify-between items-center gap-4 mb-16 sm:mb-20 font-code">
         <h1 className="text-3xl md:text-5xl font-bold">Certifications</h1>
