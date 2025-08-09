@@ -24,28 +24,28 @@ export const About = () => {
     {
       label: "Download CV",
       href: "/about/CV.pdf",
-      icon: <Download className="w-6 h-6 mb-2 text-primary" />,
+      icon: <Download className="w-6 h-6 mb-2 text-primary transition-colors duration-300" />,
       download: true,
     },
     {
       label: "Gmail",
       href: "mailto:sulthandrwrk@gmail.com",
-      icon: <Mail className="w-6 h-6 mb-2 text-primary" />,
+      icon: <Mail className="w-6 h-6 mb-2 text-primary transition-colors duration-300" />,
     },
     {
       label: "GitHub",
       href: "https://github.com/sulthandhafirr",
-      icon: <Github className="w-6 h-6 mb-2 text-primary" />,
+      icon: <Github className="w-6 h-6 mb-2 text-primary transition-colors duration-300" />,
     },
     {
       label: "LinkedIn",
       href: "https://linkedin.com/in/sulthandhafirrafief",
-      icon: <Linkedin className="w-6 h-6 mb-2 text-primary" />,
+      icon: <Linkedin className="w-6 h-6 mb-2 text-primary transition-colors duration-300" />,
     },
     {
       label: "WhatsApp",
       href: "https://wa.me/6285817516675",
-      icon: <Phone className="w-6 h-6 mb-2 text-primary" />,
+      icon: <Phone className="w-6 h-6 mb-2 text-primary transition-colors duration-300" />,
     },
   ];
 
@@ -163,7 +163,7 @@ export const About = () => {
                 className="flex flex-col items-center"
               >
                 {icon}
-                <span className="text-sm font-medium text-foreground transistion-colors duration-300">{label}</span>
+                <span className="text-sm font-medium text-foreground transition-colors duration-300">{label}</span>
               </a>
             </motion.div>
           ))}

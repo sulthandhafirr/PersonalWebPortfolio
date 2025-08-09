@@ -32,7 +32,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/experience" element={<Experience />} />
-            <Route path="/certificates" element={<Maintenance />} />
+            <Route path="/certificates" element={<Certificates />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
