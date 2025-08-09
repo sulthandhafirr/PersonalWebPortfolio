@@ -29,19 +29,19 @@ export const Projects = () => {
     >
       <div className="flex flex-wrap justify-between items-center gap-4 mb-10 font-code">
         <h1 className="text-3xl md:text-5xl font-bold">Projects</h1>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2  transition-colors duration-300">
           <button
             onClick={() => setViewMode("list")}
-            className={`p-2 rounded-full hover:bg-muted hover:scale-105 transition cursor-pointer ${
-              viewMode === "list" ? "bg-muted ring-2 ring-primary" : ""
+            className={`p-2 rounded-full hover:bg-muted hover:scale-105 cursor-pointer ${
+              viewMode === "list" ? "bg-muted ring-2" : ""
             }`}
           >
             <LayoutList className="w-5 h-5" />
           </button>
           <button
             onClick={() => setViewMode("grid")}
-            className={`p-2 rounded-full hover:bg-muted hover:scale-105 transition cursor-pointer ${
-              viewMode === "grid" ? "bg-muted ring-2 ring-primary" : ""
+            className={`p-2 rounded-full hover:bg-muted hover:scale-105 cursor-pointer ${
+              viewMode === "grid" ? "bg-muted ring-2" : ""
             }`}
           >
             <Grid3X3 className="w-5 h-5" />

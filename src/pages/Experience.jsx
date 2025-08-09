@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Briefcase, GraduationCap, Users, HeartHandshake } from "lucide-react";
-import { experienceData, iconMap } from "../hooks/experience";
+import { experienceData } from "../hooks/experience";
 
 const icons = {
   briefcase: <Briefcase className="w-5 h-5" />,
@@ -38,6 +38,7 @@ export const Experience = () => {
   const [selected, setSelected] = useState("work");
   const [isMobile, setIsMobile] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
+  const firstRender = useRef(true);
 
   useEffect(() => {
     setHasMounted(true);
@@ -47,14 +48,18 @@ export const Experience = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  useEffect(() => {
+    firstRender.current = false;
+  }, []);
+
   if (!hasMounted) return null;
 
   const filtered = experienceData.filter((d) => d.category === selected);
   const lineHeight = filtered.length * 180;
 
   return (
-    <section className="min-h-screen px-4 py-15 bg-background text-foreground flex flex-col items-center">
-      <h1 className="text-3xl md:text-5xl font-bold font-code mb-10 text-center">
+    <section className="min-h-screen px-4 py-15 bg-background text-foreground flex flex-col items-center transition-colors duration-300">
+      <h1 className="text-3xl md:text-5xl font-bold font-code mb-10 text-center transition-colors duration-300">
         Experience
       </h1>
 
@@ -78,12 +83,30 @@ export const Experience = () => {
       <div className="relative w-full max-w-5xl min-h-[300px] px-2 sm:px-0">
         <AnimatePresence mode="wait">
           <motion.div
-            key={selected + "-line"}
-            initial={{ height: 0 }}
-            animate={{ height: Math.max(lineHeight, 180) }}
-            exit={{ height: 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="absolute left-[22px] sm:left-1/2 sm:-translate-x-1/2 w-[2px] bg-border dark:bg-muted/40"
+            key={`line-${selected}`}
+            initial={{
+              scaleY: 0,
+              opacity: 0,
+              originY: 0,
+            }}
+            animate={{
+              scaleY: 1,
+              opacity: 1,
+              originY: 0,
+            }}
+            exit={{
+              scaleY: 0,
+              opacity: 0,
+              originY: 0,
+            }}
+            transition={{
+              duration: 0.6,
+              ease: "easeInOut"
+            }}
+            style={{
+              height: Math.max(lineHeight, 180)
+            }}
+            className="absolute left-[22px] transition-colors duration-300 sm:left-1/2 sm:-translate-x-1/2 w-[2px] bg-border dark:border-white/30"
           />
         </AnimatePresence>
 
@@ -91,10 +114,10 @@ export const Experience = () => {
           {filtered.length === 0 ? (
             <motion.div
               key="empty"
-              initial={{ opacity: 0, y: 20 }}
+              initial={firstRender.current ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="text-center text-muted-foreground mt-4"
+              exit={firstRender.current ? {} : { opacity: 0 }}
+              className="text-center text-muted-foreground mt-4 transition-colors duration-300"
             >
               {selected === "work"
                 ? "Still waiting for a job opportunity 🙏"
@@ -102,17 +125,19 @@ export const Experience = () => {
             </motion.div>
           ) : (
             <motion.div
-              key={selected}
+              key={`content-${selected}`}
               variants={container}
-              initial="hidden"
+              initial={firstRender.current ? false : "hidden"}
               animate="visible"
-              exit="hidden"
-              className="overflow-hidden"
+              exit={firstRender.current ? {} : "hidden"}
+              className="overflow-hidden transition-colors duration-300"
             >
               {filtered.map((exp, i) => {
                 const isLeft = isMobile || i % 2 === 0;
                 const direction = isLeft ? "left" : "right";
-                const icon = icons[exp.icon] || <Briefcase className="w-5 h-5" />;
+                const icon = icons[exp.icon] || (
+                  <Briefcase className="w-5 h-5" />
+                );
 
                 return (
                   <motion.div
@@ -120,10 +145,10 @@ export const Experience = () => {
                     variants={item(direction)}
                     className={`relative w-full mb-14 flex flex-col sm:flex-row ${
                       isLeft ? "sm:justify-start" : "sm:justify-end"
-                    }`}
+                    } transition-colors duration-300`}
                   >
                     <div className="absolute left sm:left-1/2 sm:-translate-x-1/2 z-10">
-                      <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center ring-4 ring-background">
+                      <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center ring-4 transition-colors duration-300">
                         {icon}
                       </div>
                     </div>
@@ -136,13 +161,18 @@ export const Experience = () => {
                         sm:w-[47%]
                         break-words
                         sm:text-center text-left
+                        transition-colors duration-300
                       `}
                     >
-                      <h3 className="text-lg font-semibold">{exp.company}</h3>
-                      <span className="text-sm text-muted-foreground block">
+                      <h3 className="text-lg font-semibold transition-colors duration-300">
+                        {exp.company}
+                      </h3>
+                      <span className="text-sm text-muted-foreground block transition-colors duration-300">
                         {exp.title} • {exp.year}
                       </span>
-                      <p className="mt-2 text-sm">{exp.description}</p>
+                      <p className="mt-2 text-sm transition-colors duration-300">
+                        {exp.description}
+                      </p>
                     </div>
                   </motion.div>
                 );
