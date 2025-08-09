@@ -58,7 +58,7 @@ export const About = () => {
     >
       {/* Profile & Description */}
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-4 gap-6 items-start"
+        className="grid grid-cols-1 md:grid-cols-4 gap-6"
         variants={containerVariants}
       >
         {/* Profile Image */}
@@ -82,7 +82,7 @@ export const About = () => {
           variants={itemVariants}
         >
           <h2 className="text-2xl sm:text-3xl font-bold mb-2">Hi, I'm Rafief 👋</h2>
-          <p className="text-muted-foreground leading-relaxed text-sm sm:text-base transition-colors duration-300">
+          <p className="text-foreground leading-relaxed text-sm sm:text-base transition-colors duration-300">
             {description}
           </p>
         </motion.div>
@@ -95,7 +95,7 @@ export const About = () => {
       >
         {/* Skills */}
         <motion.div
-          className="bg-card rounded-2xl shadow-md p-4 sm:p-6 h-full transition-colors duration-300"
+          className="bg-card rounded-2xl shadow-md text-foreground p-4 sm:p-6 h-full transition-colors duration-300"
           variants={itemVariants}
         >
           <h3 className="text-lg sm:text-xl font-semibold mb-4">Skills and Tools</h3>
@@ -125,7 +125,7 @@ export const About = () => {
 
         {/* Interests */}
         <motion.div
-          className="bg-card rounded-2xl shadow-md p-4 sm:p-6 h-full transition-colors duration-300 flex flex-col items-center"
+          className="bg-card rounded-2xl shadow-md p-4 sm:p-6 h-full transition-colors text-foreground duration-300 flex flex-col items-center"
           variants={itemVariants}
         >
           <h3 className="text-lg sm:text-xl font-semibold mb-4 text-center">Interests</h3>
@@ -145,7 +145,7 @@ export const About = () => {
 
       {/* Social Cards */}
       <motion.div variants={containerVariants}>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 font-code">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 font-code text-foreground transistion-colors duration-300">
           {socialCards.map(({ label, href, icon, download }, index) => (
             <motion.div
               key={index}

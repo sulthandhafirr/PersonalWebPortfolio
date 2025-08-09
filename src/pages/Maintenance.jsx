@@ -16,7 +16,7 @@ export const Maintenance = () => {
 
   return (
     <motion.section
-      className="w-full h-screen flex flex-col items-center justify-center px-4 text-center bg-background text-foreground transition-colors duration-500"
+      className="w-full h-screen flex flex-col items-center justify-center px-4 text-center bg-background text-foreground transition-colors duration-300"
       initial="hidden"
       animate="visible"
       exit="hidden"

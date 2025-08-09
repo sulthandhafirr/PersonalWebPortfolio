@@ -36,7 +36,7 @@ const AnimatedListItem = ({ item, index }) => {
       exit="exit"
       whileHover={{ scale: 1.01 }}
       whileTap={{ scale: 0.98 }}
-      className="group flex flex-col md:flex-row items-center md:items-center justify-center gap-6 border-b border-border pb-8 hover:pl-1 transition-all duration-500 ease-in-out font-code"
+      className="group flex flex-col md:flex-row items-center md:items-center justify-center gap-6 border-b border-border pb-8 hover:pl-1 transition-all duration-300 ease-in-out font-code"
     >
       <div className="hidden md:block md:w-1/3 overflow-hidden rounded-lg shadow-sm">
         <img

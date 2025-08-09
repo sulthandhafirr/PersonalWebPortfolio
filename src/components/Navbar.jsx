@@ -108,7 +108,7 @@ export const Navbar = () => {
             }
             bg-card backdrop-blur-md px-3 py-2 rounded-full
             items-center gap-2 shadow-md border border-border 
-            flex transition-all duration-500`}
+            flex transition-all duration-300`}
         >
           {navItems.map((item) => (
             <motion.button

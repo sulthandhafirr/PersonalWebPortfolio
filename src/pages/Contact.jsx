@@ -56,7 +56,7 @@ export const Contact = () => {
       animate="visible"
       exit="hidden"
       variants={containerVariants}
-      className="w-full min-h-screen flex flex-col items-center px-6 py-15 bg-muted/40 dark:bg-background transition-colors duration-500"
+      className="w-full min-h-screen flex flex-col items-center px-6 py-15 bg-muted/40 dark:bg-background transition-colors duration-300"
     >
       <h1 className="text-4xl md:text-5xl font-bold mb-8 md:mb-5 font-code text-center">
         Get in Touch.

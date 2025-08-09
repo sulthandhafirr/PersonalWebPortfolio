@@ -36,18 +36,18 @@ const AnimatedCard = ({ item, index }) => {
       animate={isInView ? "visible" : "exit"}
       variants={itemVariants}
       whileHover={{ scale: 1.02 }}
-      className="relative rounded-xl overflow-hidden shadow-md border border-border bg-background transition-colors duration-500 font-code group h-[250px] flex flex-col justify-end"
+      className="relative rounded-xl overflow-hidden shadow-md border border-border bg-background transition-colors duration-300 font-code group h-[250px] flex flex-col justify-end"
     >
       <img
         src={item.image}
         alt={item.title}
         className="absolute top-0 left-0 w-full h-auto object-cover object-top pointer-events-none select-none"
       />
-      <div className="absolute bottom-0 w-full px-3 py-4 bg-background bg-opacity-60 backdrop-blur-sm transition-colors duration-500">
-        <h3 className="text-sm font-semibold text-foreground truncate transition-colors duration-500">
+      <div className="absolute bottom-0 w-full px-3 py-4 bg-background bg-opacity-60 backdrop-blur-sm transition-colors duration-300">
+        <h3 className="text-sm font-semibold text-foreground truncate transition-colors duration-300">
         {item.title}
         </h3>
-        <p className="text-xs text-foreground truncate transition-colors duration-500">
+        <p className="text-xs text-foreground truncate transition-colors duration-300">
         {item.tech} • <span className="italic">{item.year}</span>
         </p>
       </div>
