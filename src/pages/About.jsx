@@ -81,7 +81,7 @@ export const About = () => {
           className="font-code bg-card rounded-2xl shadow-md p-4 sm:p-6 md:p-10 text-center md:text-left md:col-span-3 transition-colors duration-300 h-full"
           variants={itemVariants}
         >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-foreground">Hi, I'm Rafief 👋</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-foreground transition-colors duration-300">Hi, I'm Rafief 👋</h2>
           <p className="text-foreground leading-relaxed text-sm sm:text-base transition-colors duration-300">
             {description}
           </p>
