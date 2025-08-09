@@ -81,7 +81,7 @@ export const About = () => {
           className="font-code bg-card rounded-2xl shadow-md p-4 sm:p-6 md:p-10 text-center md:text-left md:col-span-3 transition-colors duration-300 h-full"
           variants={itemVariants}
         >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-2">Hi, I'm Rafief 👋</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-foreground">Hi, I'm Rafief 👋</h2>
           <p className="text-foreground leading-relaxed text-sm sm:text-base transition-colors duration-300">
             {description}
           </p>
@@ -145,7 +145,7 @@ export const About = () => {
 
       {/* Social Cards */}
       <motion.div variants={containerVariants}>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 font-code text-foreground transistion-colors duration-300">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 font-code">
           {socialCards.map(({ label, href, icon, download }, index) => (
             <motion.div
               key={index}
@@ -163,7 +163,7 @@ export const About = () => {
                 className="flex flex-col items-center"
               >
                 {icon}
-                <span className="text-sm font-medium">{label}</span>
+                <span className="text-sm font-medium text-foreground transistion-colors duration-300">{label}</span>
               </a>
             </motion.div>
           ))}
