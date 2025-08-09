@@ -58,9 +58,14 @@ export const Contact = () => {
       variants={containerVariants}
       className="w-full min-h-screen flex flex-col items-center px-6 py-15 bg-muted/40 dark:bg-background transition-colors duration-300"
     >
-      <h1 className="text-4xl md:text-5xl font-bold mb-8 md:mb-5 font-code text-center text-foreground">
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }} 
+        className="text-4xl md:text-5xl font-bold mb-8 md:mb-5 font-code text-center text-foreground"
+      >
         Get in Touch.
-      </h1>
+      </motion.h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-xl">
         {socialMedia.map((item, index) => (
