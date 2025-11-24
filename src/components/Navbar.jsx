@@ -9,6 +9,8 @@ import {
   FileBadge,
   Moon,
   Sun,
+  Menu,
+  X,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -23,12 +25,10 @@ const navItems = [
 
 export const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isAtFooter, setIsAtFooter] = useState(false);
-  const [visible, setVisible] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Theme setup
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme === "dark") {
@@ -44,121 +44,201 @@ export const Navbar = () => {
     localStorage.setItem("theme", newMode ? "dark" : "light");
   };
 
-  // Footer intersection check
+  const handleNavigation = (path) => {
+    navigate(path);
+    setIsMobileMenuOpen(false);
+  };
+
   useEffect(() => {
-    const footer = document.querySelector("footer");
-
-    // Cek apakah path saat ini adalah halaman yang mengandung footer
-    const isFooterPage = location.pathname === "/";
-
-    if (!isFooterPage || !footer) {
-      setIsAtFooter(false);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setVisible(false);
-        setTimeout(() => {
-          setIsAtFooter(entry.isIntersecting);
-          setVisible(true);
-        }, 200);
-      },
-      { threshold: 0.5 }
-    );
-
-    observer.observe(footer);
-
-    return () => observer.disconnect();
+    setIsMobileMenuOpen(false);
   }, [location.pathname]);
- // ✅ re-run on path change
 
   return (
-    <AnimatePresence mode="wait">
-      {visible && (
-        <motion.div
-          key={isAtFooter ? "vertical" : "horizontal"}
-          initial={{
-            opacity: 0,
-            x: isAtFooter ? 100 : 0,
-            y: isAtFooter ? 0 : 100,
-          }}
-          animate={{
-            opacity: 1,
-            x: 0,
-            y: 0,
-            transition: {
-              duration: 0.35,
-              ease: "easeOut",
-            },
-          }}
-          exit={{
-            opacity: 0,
-            x: isAtFooter ? 0 : 100,
-            y: isAtFooter ? 100 : 0,
-            transition: {
-              duration: 0.3,
-              ease: "easeIn",
-            },
-          }}
-          className={`fixed z-50 
-            ${isAtFooter
-              ? "top-1/2 right-4 -translate-y-1/2 flex-col"
-              : "bottom-4 left-1/2 -translate-x-1/2 flex-row"
-            }
-            bg-card backdrop-blur-md px-3 py-2 rounded-full
-            items-center gap-2 shadow-md border border-border 
-            flex transition-all duration-300`}
-        >
-          {navItems.map((item) => (
-            <motion.button
-              key={item.path}
-              onClick={() => navigate(item.path)}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative flex items-center justify-center 
-                         rounded-full p-2 cursor-pointer transition-all duration-300 
-                         text-foreground"
-              aria-label={item.label}
+    <>
+      {/* Desktop */}
+      <nav className="hidden md:block fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center"
             >
-              <div className="relative z-10">{item.icon}</div>
-              <span
-                className={`absolute text-xs text-white bg-black px-2 py-1 rounded z-50 whitespace-nowrap
-                  transition-all duration-200 scale-0 group-hover:scale-100
-                  ${isAtFooter
-                    ? "right-full mr-2 top-1/2 -translate-y-1/2 text-left"
-                    : "bottom-full mb-1 left-1/2 -translate-x-1/2 text-center"
-                  }`}
+              <button
+                onClick={() => navigate("/")}
+                className="text-xl font-bold text-foreground hover:opacity-80 transition-opacity"
               >
-                {item.label}
-              </span>
-            </motion.button>
-          ))}
+                Portfolio
+              </button>
+            </motion.div>
 
-          {/* Theme toggle button */}
-          <motion.button
-            onClick={toggleTheme}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="group relative p-2 rounded-full text-foreground transition-all duration-300 cursor-pointer"
-            aria-label="Toggle theme"
-          >
-            <div className="relative z-10">
-              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+            <div className="flex items-center gap-1">
+              {navItems.map((item, index) => (
+                <motion.button
+                  key={item.path}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  onClick={() => navigate(item.path)}
+                  className={`relative px-4 py-2 text-sm font-medium transition-all duration-200 cursor-pointer
+                    ${location.pathname === item.path
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                    }`}
+                >
+                  {item.label}
+                  {location.pathname === item.path ? (
+                    <motion.div
+                      layoutId="navbar-indicator"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-foreground"
+                      initial={false}
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  ) : (
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-muted-foreground/0 group-hover:bg-muted-foreground/30 transition-colors duration-200" />
+                  )}
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-muted-foreground/30 opacity-0 hover:opacity-100 transition-opacity duration-200" />
+                </motion.button>
+              ))}
             </div>
-            <span
-              className={`absolute text-xs text-white bg-black px-2 py-1 rounded z-50 whitespace-nowrap
-                transition-all duration-200 scale-0 group-hover:scale-100
-                ${isAtFooter
-                  ? "right-full mr-2 top-1/2 -translate-y-1/2 text-left"
-                  : "bottom-full mb-1 left-1/2 -translate-x-1/2 text-center"
-                }`}
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-3"
             >
-              Theme
-            </span>
-          </motion.button>
-        </motion.div>
-      )}
-    </AnimatePresence>
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-lg text-foreground hover:bg-accent transition-colors duration-200 cursor-pointer"
+                aria-label="Toggle theme"
+              >
+                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+            </motion.div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile */}
+      <div className="md:hidden">
+        <motion.button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-foreground text-background shadow-lg flex items-center justify-center"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="Toggle menu"
+        >
+          <AnimatePresence mode="wait">
+            {isMobileMenuOpen ? (
+              <motion.div
+                key="close"
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <X size={24} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="menu"
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Menu size={24} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.button>
+
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="fixed inset-0 bg-black/50 z-40"
+              />
+
+              <div className="fixed bottom-24 right-6 z-50 flex flex-col-reverse gap-3">
+                {navItems.map((item, index) => (
+                  <motion.button
+                    key={item.path}
+                    initial={{ opacity: 0, scale: 0, y: 20 }}
+                    animate={{ 
+                      opacity: 1, 
+                      scale: 1, 
+                      y: 0,
+                      transition: {
+                        delay: (index - navItems.length - 1) * 0.05
+                        
+                      }
+                    }}
+                    exit={{ 
+                      opacity: 0, 
+                      scale: 0, 
+                      y: 20,
+                      transition: {
+                        delay: (navItems.length - index - 1) * 0.05
+                      }
+                    }}
+                    onClick={() => handleNavigation(item.path)}
+                    className={`group relative w-12 h-12 rounded-full flex items-center justify-center shadow-lg backdrop-blur-md transition-all duration-200
+                      ${location.pathname === item.path
+                        ? "bg-foreground text-background scale-110"
+                        : "bg-card/90 text-foreground border border-border"
+                      }`}
+                    whileHover={{ scale: 1.15 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label={item.label}
+                  >
+                    {item.icon}
+                    <span className="absolute right-full mr-3 px-3 py-1.5 bg-foreground text-background text-xs font-medium rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg">
+                      {item.label}
+                    </span>
+                  </motion.button>
+                ))}
+              </div>
+
+              <motion.button
+                initial={{ opacity: 0, scale: 0, x: 20 }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: 1, 
+                  x: 0,
+                  transition: {
+                    delay: 0.1,
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 20
+                  }
+                }}
+                exit={{ 
+                  opacity: 0, 
+                  scale: 0, 
+                  x: 20
+                }}
+                onClick={toggleTheme}
+                className="fixed bottom-6 right-24 z-50 group w-12 h-12 rounded-full flex items-center justify-center shadow-lg bg-card/90 text-foreground border border-border backdrop-blur-md"
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Toggle theme"
+              >
+                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+                <span className="absolute right-full mr-3 px-3 py-1.5 bg-foreground text-background text-xs font-medium rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg">
+                  Theme
+                </span>
+              </motion.button>
+            </>
+          )}
+        </AnimatePresence>
+      </div>
+
+      <div className="hidden md:block h-16" />
+    </>
   );
 };
