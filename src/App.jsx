@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Home } from "./pages/Home";
@@ -12,12 +12,18 @@ import { Navbar } from "./components/Navbar";
 import { Experience } from "./pages/Experience";
 import { Maintenance } from "./pages/Maintenance";
 import { ScrollTop } from "./components/ScrollTop";
+import { ClickHere } from "./components/ClickHere";
 
 function App() {
   const [showPreloader, setShowPreloader] = useState(true);
+  const clickHereRef = useRef(null);
 
   const handlePreloaderFinish = () => {
     setShowPreloader(false);
+  };
+
+  const handleHireClick = () => {
+    clickHereRef.current?.openModal();
   };
 
   return (
@@ -27,7 +33,8 @@ function App() {
       ) : (
         <BrowserRouter>
           <ScrollTop />
-          <Navbar />
+          <Navbar onHireClick={handleHireClick} />
+          <ClickHere ref={clickHereRef} />
           <Routes>
             <Route index element={<Home />} />
             <Route path="/about" element={<About />} />
