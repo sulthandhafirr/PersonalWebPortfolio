@@ -44,6 +44,7 @@ export const Experience = () => {
   const [selected, setSelected] = useState("work");
   const [isMobile, setIsMobile] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
+  const [selectedWork, setSelectedWork] = useState(null);
   const firstRender = useRef(true);
 
   useEffect(() => {
@@ -57,6 +58,16 @@ export const Experience = () => {
   useEffect(() => {
     firstRender.current = false;
   }, []);
+
+  const handleWorkClick = (exp) => {
+    if (selected === 'work') {
+      setSelectedWork(exp);
+    }
+  };
+
+  const closeModal = () => {
+    setSelectedWork(null);
+  };
 
   if (!hasMounted) return null;
 
@@ -157,18 +168,29 @@ export const Experience = () => {
 
                     {/* Card */}
                     <div
+                      onClick={() => handleWorkClick(exp)}
                       className={`bg-card px-4 py-5 rounded-xl shadow-md
                         ml-14 sm:ml-0
                         max-w-[calc(100%-3.5rem)]
                         sm:w-[47%]
                         break-words
-                        sm:text-center text-left`}
+                        sm:text-center text-left
+                        ${exp.category === 'work' ? 'cursor-pointer hover:shadow-lg transition-shadow' : ''}`}
                     >
                       <h3 className="text-lg font-semibold">{exp.company}</h3>
                       <span className="text-sm text-muted-foreground block">
                         {exp.title} • {exp.year}
                       </span>
-                      <p className="mt-2 text-sm">{exp.description}</p>
+                      {exp.category === 'work' && (
+                        <span className="inline-block mt-2 text-xs text-primary font-medium">
+                          Click me ›
+                        </span>
+                      )}
+                      {exp.category !== 'work' && (
+                        <p className="mt-2 text-sm">
+                          {Array.isArray(exp.description) ? exp.description[0] : exp.description}
+                        </p>
+                      )}
                     </div>
                   </motion.div>
                 );
@@ -177,6 +199,58 @@ export const Experience = () => {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Modal for Work Details */}
+      <AnimatePresence>
+        {selectedWork && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeModal}
+              className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4"
+            >
+              {/* Modal Card */}
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-card rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 md:p-8"
+              >
+                {/* Content */}
+                <div className="text-left">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
+                      {icons[selectedWork.icon]}
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold">{selectedWork.company}</h2>
+                      <p className="text-sm text-muted-foreground">
+                        {selectedWork.title} • {selectedWork.year}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Description as Bullets */}
+                  {Array.isArray(selectedWork.description) && (
+                    <ul className="mt-6 space-y-3 list-disc list-outside pl-5 text-foreground/90">
+                      {selectedWork.description.map((desc, idx) => (
+                        <li key={idx} className="text-sm leading-relaxed">
+                          {desc}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

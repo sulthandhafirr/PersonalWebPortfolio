@@ -4,7 +4,37 @@ export const experienceData = [
     year: "Mar - May 2025",
     title: "AI Engineer",
     company: "Solos, Qatar",
-    description: "Developed real-time AI for defect detection using YOLOv5.",
+    description: [
+      "Developed a plastic bottle defect detection system using YOLOv5 on real world industrial data.",
+      "Applied image preprocessing and advanced augmentation using Albumentations.",
+      "Achieved high detection accuracy and real time performance for automated production use."
+    ],
+    icon: "briefcase",
+    category: "work",
+  },
+  {
+    year: "Aug 2025 - Present",
+    title: "Junior Programmer Intern",
+    company: "Netiquette Software, Singapore",
+    description: [
+      "Maintained and fixed bugs in the company’s inventory management system using SQL and ColdFusion.",
+      "Improved system stability and data accuracy by troubleshooting database and logic issues.",
+      "Collaborated with the support team to analyze user reported issues and implement effective fixes.",
+      "Enhanced existing system functionality by updating modules and adding minor feature improvements."
+    ],
+    icon: "briefcase",
+    category: "work",
+  },
+  {
+    year: "Sep 2025 - Present",
+    title: "Fullstack Developer Intern",
+    company: "PT Nose Herbalindo, Indonesia",
+    description: [
+      "Developed IFC News, an AI powered financial news platform using React TypeScript and Tailwind CSS.",
+      "Implemented Python based automation and AI integration for content processing.",
+      "Built end to end features, improved performance, and ensured responsive UI/UX across devices.",
+      "Collaborated with internal teams to refine requirements and deliver production ready features."
+    ],
     icon: "briefcase",
     category: "work",
   },
