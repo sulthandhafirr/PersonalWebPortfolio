@@ -238,7 +238,7 @@ export const Navbar = () => {
         </AnimatePresence>
       </div>
 
-      <div className="hidden md:block h-16" />
+      <div className="hidden md:block h-10" />
     </>
   );
 };
