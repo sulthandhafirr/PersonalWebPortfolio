@@ -11,6 +11,7 @@ import {
   Sun,
   Menu,
   X,
+  Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -23,7 +24,7 @@ const navItems = [
   { path: "/contact", icon: <UserRoundPen size={18} />, label: "Contact" },
 ];
 
-export const Navbar = () => {
+export const Navbar = ({ onHireClick }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ export const Navbar = () => {
                 onClick={() => navigate("/")}
                 className="text-xl font-bold text-foreground hover:opacity-80 transition-opacity"
               >
-                Portfolio
+                Portfolio.
               </button>
             </motion.div>
 
@@ -204,35 +205,72 @@ export const Navbar = () => {
                 ))}
               </div>
 
-              <motion.button
-                initial={{ opacity: 0, scale: 0, x: 20 }}
-                animate={{ 
-                  opacity: 1, 
-                  scale: 1, 
-                  x: 0,
-                  transition: {
-                    delay: 0.1,
-                    type: "spring",
-                    stiffness: 260,
-                    damping: 20
-                  }
-                }}
-                exit={{ 
-                  opacity: 0, 
-                  scale: 0, 
-                  x: 20
-                }}
-                onClick={toggleTheme}
-                className="fixed bottom-6 right-24 z-50 group w-12 h-12 rounded-full flex items-center justify-center shadow-lg bg-card/90 text-foreground border border-border backdrop-blur-md"
-                whileHover={{ scale: 1.15 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label="Toggle theme"
-              >
-                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-                <span className="absolute right-full mr-3 px-3 py-1.5 bg-foreground text-background text-xs font-medium rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg">
-                  Theme
-                </span>
-              </motion.button>
+              <div className="fixed bottom-6 right-24 z-50 flex gap-3">
+                {/* Hire Me Button */}
+                <motion.button
+                  initial={{ opacity: 0, scale: 0, x: 20 }}
+                  animate={{ 
+                    opacity: 1, 
+                    scale: 1, 
+                    x: 0,
+                    transition: {
+                      delay: 0.15,
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 20
+                    }
+                  }}
+                  exit={{ 
+                    opacity: 0, 
+                    scale: 0, 
+                    x: 20
+                  }}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    onHireClick?.();
+                  }}
+                  className="group w-12 h-12 rounded-full flex items-center justify-center shadow-lg bg-gradient-to-r from-primary to-primary/80 text-primary-foreground"
+                  whileHover={{ scale: 1.15 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Hire Me"
+                >
+                  <Sparkles size={18} />
+                  <span className="absolute right-full mr-3 px-3 py-1.5 bg-foreground text-background text-xs font-medium rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg">
+                    Hire Me!
+                  </span>
+                </motion.button>
+
+                {/* Theme Button */}
+                <motion.button
+                  initial={{ opacity: 0, scale: 0, x: 20 }}
+                  animate={{ 
+                    opacity: 1, 
+                    scale: 1, 
+                    x: 0,
+                    transition: {
+                      delay: 0.1,
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 20
+                    }
+                  }}
+                  exit={{ 
+                    opacity: 0, 
+                    scale: 0, 
+                    x: 20
+                  }}
+                  onClick={toggleTheme}
+                  className="group w-12 h-12 rounded-full flex items-center justify-center shadow-lg bg-card/90 text-foreground border border-border backdrop-blur-md"
+                  whileHover={{ scale: 1.15 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Toggle theme"
+                >
+                  {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+                  <span className="absolute right-full mr-3 px-3 py-1.5 bg-foreground text-background text-xs font-medium rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg">
+                    Theme
+                  </span>
+                </motion.button>
+              </div>
             </>
           )}
         </AnimatePresence>
