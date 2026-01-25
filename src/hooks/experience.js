@@ -13,7 +13,7 @@ export const experienceData = [
     category: "work",
   },
   {
-    year: "Aug 2025 - Present",
+    year: "Aug 2025 - Jan 2026",
     title: "Junior Programmer Intern",
     company: "Netiquette Software, Singapore",
     description: [
@@ -26,14 +26,15 @@ export const experienceData = [
     category: "work",
   },
   {
-    year: "Sep 2025 - Present",
+    year: "Sep 2025 - Dec 2025",
     title: "Fullstack Developer Intern",
     company: "PT Nose Herbalindo, Indonesia",
     description: [
-      "Developed IFC News, an AI powered financial news platform using React TypeScript and Tailwind CSS.",
-      "Implemented Python based automation and AI integration for content processing.",
-      "Built end to end features, improved performance, and ensured responsive UI/UX across devices.",
-      "Collaborated with internal teams to refine requirements and deliver production ready features."
+      "Developed and integrated production ready frontend components with backend services for IFC News platforms.",
+      "Built automated data pipelines including news scraping, AI based summarization, and crypto alert systems with optimized performance and token efficiency.",
+      "Managed deployment and cloud environments using Cloudflare and Railway to ensure stable and scalable system delivery.",
+      "Refactored UI and database architecture, improving system consistency, maintainability, and data reliability.",
+      "Contributed to the development of Genius AI, an AI powered educational assistant for children, by implementing and optimizing MQTT based communication systems.",
     ],
     icon: "briefcase",
     category: "work",
