@@ -1,26 +1,29 @@
 export const experienceData = [
   // Work
   {
-    year: "Mar - May 2025",
-    title: "AI Engineer",
-    company: "Solos, Qatar",
+    year: "Feb 2026 - Present",
+    title: "Full Stack Developer (AI Integrated Systems)",
+    company: "Dynamics Management Solution, Indonesia (Remote)",
     description: [
-      "Developed a plastic bottle defect detection system using YOLOv5 on real world industrial data.",
-      "Applied image preprocessing and advanced augmentation using Albumentations.",
-      "Achieved high detection accuracy and real time performance for automated production use."
+      "Developed frontend interfaces for an AI powered CV screening platform, enabling candidate evaluation, scoring, and role based recommendations.",
+      "Integrated AI services into the application, connecting frontend components with backend and AI driven APIs for real time processing.",
+      "Built dynamic and responsive user interfaces using Next.js, React, and TypeScript to support interactive features including AI based interview simulations.",
+      "Implemented efficient state management and data handling using React Query to ensure performance and consistency across real time interactions.",
+      "Designed robust input validation and form handling using Zod and React Hook Form to maintain data integrity and reliability"
     ],
     icon: "briefcase",
     category: "work",
   },
   {
-    year: "Aug 2025 - Jan 2026",
-    title: "Junior Programmer Intern",
-    company: "Netiquette Software, Singapore",
+    year: "Aug 2025 - Present",
+    title: "Junior Software Engineer (Inventory Systems & Automation)",
+    company: "Netiquette Software, Singapore (Remote)",
     description: [
-      "Maintained and fixed bugs in the company’s inventory management system using SQL and ColdFusion.",
-      "Improved system stability and data accuracy by troubleshooting database and logic issues.",
-      "Collaborated with the support team to analyze user reported issues and implement effective fixes.",
-      "Enhanced existing system functionality by updating modules and adding minor feature improvements."
+      "Maintained and improved a production level inventory management system used by multi country clients across Southeast Asia.",
+      "Diagnosed and resolved critical issues across backend logic and database layers, ensuring system stability and reliability.",
+      "Developed OCR based automation to extract bill data and streamline manual processes, improving operational efficiency.",
+      "Optimized database queries and data handling to ensure accurate inventory tracking and system performance.",
+      "Provided technical support and troubleshooting for international clients, ensuring smooth system operations across multiple regions."
     ],
     icon: "briefcase",
     category: "work",
@@ -35,6 +38,18 @@ export const experienceData = [
       "Managed deployment and cloud environments using Cloudflare and Railway to ensure stable and scalable system delivery.",
       "Refactored UI and database architecture, improving system consistency, maintainability, and data reliability.",
       "Contributed to the development of Genius AI, an AI powered educational assistant for children, by implementing and optimizing MQTT based communication systems.",
+    ],
+    icon: "briefcase",
+    category: "work",
+  },
+  {
+    year: "Mar  2025 - May 2025",
+    title: "AI Engineer",
+    company: "Solos, Qatar",
+    description: [
+      "Developed a plastic bottle defect detection system using YOLOv5 on real world industrial data.",
+      "Applied image preprocessing and advanced augmentation using Albumentations.",
+      "Achieved high detection accuracy and real time performance for automated production use."
     ],
     icon: "briefcase",
     category: "work",
