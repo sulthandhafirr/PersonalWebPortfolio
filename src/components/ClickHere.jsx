@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { Download, MessageCircle, X, Sparkles } from "lucide-react";
 
 export const ClickHere = forwardRef((props, ref) => {
@@ -8,7 +7,6 @@ export const ClickHere = forwardRef((props, ref) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTransparent, setIsTransparent] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
-  const navigate = useNavigate();
   const inactivityTimer = useRef(null);
   const dragStartPos = useRef({ x: 0, y: 0 });
 
@@ -58,9 +56,25 @@ export const ClickHere = forwardRef((props, ref) => {
 
   const handleContactMe = () => {
     setIsExpanded(false);
-    setTimeout(() => {
-      navigate("/contact");
-    }, 300);
+  };
+
+  const handleContactAs = (type) => {
+    setIsExpanded(false);
+    const phoneNumber = "6285817516675";
+
+    let message = "";
+    if (type === "hr") {
+      message = "Hi Rafief, I came across your portfolio and I'm impressed with your work. I'd like to discuss potential job opportunities. Could we schedule a time to talk?";
+    } else if (type === "client") {
+      message = "Hey Rafief! I really liked your portfolio and the projects you've done. I have an interesting project I'd love to discuss with you. Are you available for a quick chat?";
+    }
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    const openedWindow = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    if (!openedWindow) {
+      window.location.href = whatsappUrl;
+    }
   };
 
   return (
@@ -163,7 +177,7 @@ export const ClickHere = forwardRef((props, ref) => {
                   Good Morning, Good Afternoon, Good Evening. I'm Rafief. Let's work together to create something amazing!
                 </p>
 
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2.5">
                   <button
                     onClick={handleDownloadCV}
                     className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 px-6 rounded-xl font-medium flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
@@ -173,11 +187,19 @@ export const ClickHere = forwardRef((props, ref) => {
                   </button>
 
                   <button
-                    onClick={handleContactMe}
-                    className="w-full bg-muted text-foreground hover:bg-muted/80 py-3 px-6 rounded-xl font-medium flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                    onClick={() => handleContactAs("hr")}
+                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 py-2.5 px-6 rounded-xl font-medium flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer text-sm border border-accent-foreground/20"
                   >
-                    <MessageCircle className="w-4 h-4" />
-                    Contact Me
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    Contact as HR
+                  </button>
+
+                  <button
+                    onClick={() => handleContactAs("client")}
+                    className="w-full bg-muted text-foreground hover:bg-muted/80 py-2.5 px-6 rounded-xl font-medium flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer text-sm border border-border"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    Contact as Client
                   </button>
                 </div>
               </div>
